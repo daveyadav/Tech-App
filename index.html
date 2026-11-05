@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tech App — Recent Tech Launches Worldwide</title>
+<meta name="description" content="Recent tech launches worldwide — phones, laptops, tablets, wearables and AI. Specs, prices in USD and approx NPR, images, videos and live tech news.">
+<meta name="theme-color" content="#07090f">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230ea5e9'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>T</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="header-inner">
+      <div class="logo">Tech<span>App</span></div>
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="Search launches — iPhone, Galaxy, Pixel, MacBook…" aria-label="Search launches" autocomplete="off">
+      </div>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">🌙 / ☀️</button>
+      <button class="icon-btn" id="savedBtn" type="button" aria-label="Saved launches">★ Saved <span id="savedCount">0</span></button>
+    </div>
+    <nav class="tabs" id="mainTabs" aria-label="Sections">
+      <button class="tab active" data-tab="launches" type="button">Launches</button>
+      <button class="tab" data-tab="calendar" type="button">Launch Calendar</button>
+      <button class="tab" data-tab="news" type="button">Live News</button>
+      <button class="tab" data-tab="saved" type="button">Saved</button>
+      <button class="tab" data-tab="compare" type="button">Compare</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- Launches -->
+  <section id="tab-launches">
+    <div class="hero" id="hero" aria-label="Top launches"></div>
+
+    <div class="controls">
+      <div class="chips" id="filterChips" role="group" aria-label="Filters"></div>
+      <select id="sortSelect" aria-label="Sort launches">
+        <option value="date-desc">Newest first</option>
+        <option value="date-asc">Oldest first</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+      </select>
+    </div>
+    <p class="count" id="resultCount"></p>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="emptyState" hidden>No launches match your search / filter. Try clearing the search or choosing “All”.</div>
+
+    <div class="compare-bar" id="compareBar">
+      <span id="compareLabel">Select up to 2 phones to compare</span>
+      <span>
+        <button class="btn primary small" id="compareGo" type="button">Compare</button>
+        <button class="btn ghost small" id="compareClear" type="button" style="color:var(--text);border-color:var(--line);background:var(--card)">Clear</button>
+      </span>
+    </div>
+  </section>
+
+  <!-- Calendar -->
+  <section id="tab-calendar" hidden>
+    <div class="section">
+      <div class="section-head"><div><h2>Launch Calendar</h2><p class="muted">Grouped by month. Rumoured dates are not confirmed — they are marked Rumoured.</p></div></div>
+      <div id="calendarList"></div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section id="tab-news" hidden>
+    <div class="section">
+      <div class="section-head"><div><h2>Live Tech News</h2><p class="muted">Latest headlines from The Verge and GSMArena. Title + snippet + link only — read the full article on the original site.</p></div><button class="icon-btn" id="refreshNews" type="button">↻ Refresh</button></div>
+      <div id="newsStatus"></div>
+      <div class="news-list" id="newsList"></div>
+    </div>
+  </section>
+
+  <!-- Saved -->
+  <section id="tab-saved" hidden>
+    <div class="section">
+      <h2>Saved launches</h2>
+      <p class="muted">Saved on this device only (localStorage). Tap ★ on any card to save it here.</p>
+      <div class="grid" id="savedGrid"></div>
+      <div class="empty" id="savedEmpty" hidden>No saved launches yet.</div>
+    </div>
+  </section>
+
+  <!-- Compare -->
+  <section id="tab-compare" hidden>
+    <div class="section">
+      <h2>Compare phones</h2>
+      <p class="muted">Pick up to 2 phones from the Launches tab (tap “Compare” on a card), then see them side by side here.</p>
+      <div id="compareView"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Detail modal -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>Tech App v1</b> — Recent tech launches worldwide. Phones, laptops, tablets, wearables and AI first.</p>
+    <p>Sources &amp; attribution: News headlines via The Verge and GSMArena RSS (through rss2json) — title, snippet and link only, with source credit. Product images are Unsplash photos used as illustrations, not official press images. Specs and prices are curated from Apple, Samsung, Google, OnePlus, Motorola, Xiaomi and OPPO announcements as listed in the app — prices in NPR are approx. at 1 USD ≈ Rs 137. Rumoured launches are clearly marked Rumoured and are not presented as launched. Videos are linked to YouTube search for the official trailer — we do not embed guessed video IDs and we do not re-upload videos.</p>
+    <p>Static PWA — no account, no API keys in the app, no backend. Works offline for curated launches; Live News needs internet.</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
